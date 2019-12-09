@@ -8,7 +8,9 @@ class App extends React.Component{
     super()
     this.state = {
       user: 'wombat1972',
-      pic: []
+      pic: '',
+      name: '',
+      uid: ''
     } 
   
   }
@@ -17,7 +19,9 @@ class App extends React.Component{
     axios.get(`https://api.github.com/users/${this.state.user}`)
       .then(result => {
         this.setState({
-          pic: result.data.avatar_url
+          pic: result.data.avatar_url,
+          name: result.data.name,
+          uid: result.data.login
         })
         console.log(result)
       })
@@ -31,9 +35,10 @@ class App extends React.Component{
       <>
         <h1>Github User Card</h1>
         <div>
-          {this.state.pic.map((pic, id) => (
-            <img key={id} src={pic} alt='github avitar' />
-          ))}
+          <h1>Github profile for: {this.state.name}</h1>
+          <h2>Profile name: {this.state.uid}</h2>
+          <img src={this.state.pic} alt='github avatar' />
+
         </div>
         
       </>
