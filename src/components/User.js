@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
 import axios from 'axios';
+import UserCard from "./UserCard";
 
 
 class App extends React.Component{
@@ -11,7 +11,7 @@ class App extends React.Component{
       pic: '',
       name: '',
       uid: '',
-      followers: []
+      bio: ''
     } 
   
   }
@@ -23,19 +23,13 @@ class App extends React.Component{
           pic: result.data.avatar_url,
           name: result.data.name,
           uid: result.data.login,
+          bio: result.data.bio
         })
         console.log(result)
       })
       .catch(error => {
         console.log('error:', error)
       })
-
-    //   Axios.get(`https://api.github.com/users/${this.state.user}/followers`)
-    //   .then (result => {
-    //     this.setState ({
-    //     followers: result.data
-    //   })  
-    // })
   }
 
   render() {
@@ -46,6 +40,7 @@ class App extends React.Component{
           <h1>Github profile for: {this.state.name}</h1>
           <h2>Profile name: {this.state.uid}</h2>
           <img src={this.state.pic} alt='github avatar' />
+          <p>Bio: {this.state.bio} </p>
         </div>
         
       </>
@@ -53,4 +48,4 @@ class App extends React.Component{
   }
 }
 
-export default App;
+export default User;
